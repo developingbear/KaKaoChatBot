@@ -23,8 +23,4 @@ def create_app():
 
     return app
 
-def print_some():
-    print(datetime.now().time())
-     
-
 
