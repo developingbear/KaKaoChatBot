@@ -20,7 +20,17 @@ def create_app():
     #Blueprint
     from .views import main_views
     app.register_blueprint(main_views.bp)
+    
+    #timer
+    from apscheduler.schedulers.background import BackgroundScheduler
+    from chatbot.control.commands.init import Init
+    scheduler = BackgroundScheduler(daemon=True)
+    scheduler.add_job(Init.DBtoday, 'cron', hour = 0, minute = 0, second=1) 
+    scheduler.start()
 
     return app
 
+""" 
+http://kakaochatbot-wpvdo.run.goorm.io/check/%7B%22id%22:%22ons문창주%22,%22msg%22:%22init%22%7D
+"""
 
