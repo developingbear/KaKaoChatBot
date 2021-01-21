@@ -3,20 +3,19 @@ from chatbot import db
 
 class User(db.Model):
     email = db.Column(db.String(30), primary_key=True)
-    kakao_id = db.Column(db.String(10), nullable=False)
+    kakao_id = db.Column(db.String(10))
     name = db.Column(db.String(10), nullable=False)
     group = db.Column(db.String(20), nullable=False)
     usertype = db.Column(db.String(10), nullable=False)
     isbp = db.Column(db.Boolean(), server_default='0', nullable=False)
 
 class Answer(db.Model):
-    user = db.relationship('User', backref=db.backref('answer_set'))
-
+    user = db.relationship('User', backref=db.backref('answer_set', cascade='all, delete-orphan'))
     answer_id = db.Column(db.Integer, primary_key=True)
     kakao_id = db.Column(db.String(10),
-                         db.ForeignKey('user.kakao_id',
-                                       ondelete='CASCADE'),
-                         nullable=False)
+                         db.ForeignKey('user.kakao_id'),
+                         nullable=False
+                         )
     checkdate = db.Column(db.Date(), nullable=True)
     checktime = db.Column(db.DateTime(), nullable=True)
     work_start_time = db.Column(db.String(10), nullable=True)

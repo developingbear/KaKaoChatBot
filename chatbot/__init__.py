@@ -31,6 +31,6 @@ def create_app():
     return app
 
 """ 
-http://kakaochatbot-wpvdo.run.goorm.io/check/%7B%22id%22:%22ons문창주%22,%22msg%22:%22init%22%7D
+http://kakaochatbot-wpvdo.run.goorm.io/check/%7B%22id%22:%22ons문창주%22,%22msg%22:%22del%22%7D
 """
 

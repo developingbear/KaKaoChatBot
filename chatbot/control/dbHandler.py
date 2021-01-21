@@ -205,3 +205,16 @@ class DBHandler:
         answer = User.query.join(Answer, User.kakao_id == Answer.kakao_id).count()
         print(answer)
         return answer
+    
+    @staticmethod
+    def deleteUserBy(userId):
+        user = User.query.filter(User.kakao_id == userId).first()
+        if user :
+            db.session.delete(user)
+            db.session.commit()
+            return f"{userId} was deleted"
+        else :
+            return "Fail to delete user"
+        
+        
+        

@@ -4,6 +4,7 @@ from .commands.alarm import Alarm
 from .commands.report import Report
 from .commands.sendReport import SendReport
 from .commands.help import Help
+from .commands.delete import Delete
 
 class CmdParser:
     adminCmds = {
@@ -11,7 +12,8 @@ class CmdParser:
         'show' : Show(),
         'alarm': Alarm(),
         're': Report(),
-        'sr': SendReport()
+        'sr': SendReport(),
+        'del' : Delete(),
     }
     adminCmds['help'] = Help(adminCmds)
     
