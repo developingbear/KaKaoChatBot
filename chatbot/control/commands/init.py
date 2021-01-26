@@ -13,10 +13,10 @@ class Init(Command):
         return response
     
     @staticmethod
-    def DBtoday():
-        app = create_app()
+    def DBtoday(app):
         with app.app_context():
             DBHandler.initToday()
+            print("init done")
  
     def getDescription(self):
-        return "오늘 DB answer row를 init 합니다."#"Daily DB init Schedule를 등록합니다. 이 작업은 Server를 실행한 뒤, 한 번만 필요합니다."
+        return "오늘 DB answer row를 init 합니다."
