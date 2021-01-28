@@ -34,7 +34,7 @@ class Report(Command):
 
 ✅ 진행인원 중 이상체온 인원 : 0
 
-✅ 협력사 총원 32명 중 {DBHandler.getTodayCheckCount('BP_DS사업1)e커머스팀')}명 출근 : 전원 정상
+✅ 협력사 총원 33명 중 {DBHandler.getTodayCheckCount('BP_DS사업1)e커머스팀')}명 출근 : 전원 정상
 
 챗봇 관련 문의는 문창주님에게 부탁드립니다.
 '''

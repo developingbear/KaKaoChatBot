@@ -53,7 +53,7 @@ class DBHandler:
                 db.session.add(answer)
                                       
         db.session.commit()
-        
+
         serverInit = Server.query.filter(Server.date == date.today()).count()
         if not serverInit:
             server = Server(
@@ -114,6 +114,11 @@ class DBHandler:
         user.temperature = None
         user.checkstatus = 'NC'
         db.session.commit()
+        
+    @staticmethod
+    def getUserListByStatus(status):
+        users = Answer.query.filter(Answer.checkdate == date.today(),
+                                   Answer.checkstatus == status)
         
     @staticmethod
     def getNCuserList():
@@ -193,11 +198,16 @@ class DBHandler:
         
     @staticmethod
     def getTodayUserList():
-        users = Answer.query.join(User, Answer.kakao_id == User.kakao_id)\
-                           .filter(Answer.checkdate == date.today())
         title = f"📋 UserList {date.today()}\n"
-        userList = [f"{user.kakao_id} {user.checkstatus} {user.workplace}" for user in users]
-        return title + "\n".join(userList)
+        users_NC = DBHandler.getUserListByStatus('NC')
+        userList = [f"{user.kakao_id} {user.checkstatus} {user.workplace}" for user in users_NC]
+        title += "\n".join(userList)
+        
+        users_END = DBHandler.getUserListByStatus('END')
+        userList = [f"{user.kakao_id} {user.checkstatus} {user.workplace}" for user in users_END]
+        title += "\n".join(userList)
+        
+        return title
 
 
     @staticmethod
