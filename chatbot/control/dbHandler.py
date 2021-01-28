@@ -203,12 +203,14 @@ class DBHandler:
         users_NC = DBHandler.getUserListByStatus('NC')
         if users_NC:
             userList = [f"{user.kakao_id} {user.checkstatus} {user.workplace}" for user in users_NC]
-        title += "미완료 LIST\n".join(userList)
+            title += "미완료 LIST\n"
+            title += "\n".join(userList)
         
         users_END = DBHandler.getUserListByStatus('END')
         if users_END:
             userList = [f"{user.kakao_id} {user.checkstatus} {user.workplace}" for user in users_END]
-        title += "완료 LIST\n".join(userList)
+            title += "완료 LIST\n"
+            title += "\n".join(userList)
         
         return title
 
