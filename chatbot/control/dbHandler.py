@@ -201,13 +201,13 @@ class DBHandler:
     def getTodayUserList():
         title = f"📋 UserList {date.today()}\n"
         users_NC = DBHandler.getUserListByStatus('NC')
-        if users_NC:
+        if users_NC.count() :
             userList = [f"{user.kakao_id} {user.checkstatus} {user.workplace}" for user in users_NC]
             title += "미완료 LIST\n"
             title += "\n".join(userList)
         
         users_END = DBHandler.getUserListByStatus('END')
-        if users_END:
+        if users_END.count() :
             userList = [f"{user.kakao_id} {user.checkstatus} {user.workplace}" for user in users_END]
             title += "완료 LIST\n"
             title += "\n".join(userList)
